@@ -1,24 +1,54 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users テーブル
 
-Things you may want to cover:
+| Column             | Type   | Options                  |
+| ---------------    | ------ | ------------------------ |
+| name               | string | null: false              |
+| email              | string | null: false, unique: true|
+| encrypted_password | string | null: false              |
 
-* Ruby version
+### Association
+- has_many :tweets
+- has_many :tweetcomments
+- has_one :profile
 
-* System dependencies
+## tweets テーブル
 
-* Configuration
+| Column             | Type        | Options                       |
+| ------------------ | -------     | ----------------------------- |
+| content            | text        | null:false                    |
+| pastime_id         | integer     | null:false                    |
+| user               | references  | null:false, foreign_key: true |
 
-* Database creation
+### Association
+- has_many :tweetcomments
+- belongs_to :user
 
-* Database initialization
+## tweetcomments テーブル
 
-* How to run the test suite
+| Column             | Type        | Options                       |
+| ------------------ | -------     | ----------------------------- |
+| content            | text        | null:false                    |
+| tweet              | references  | null:false, foreign_key: true |
+| user               | references  | null:false, foreign_key: true |
 
-* Services (job queues, cache servers, search engines, etc.)
+### Association
+- belongs_to :user
+- belongs_to :tweet
 
-* Deployment instructions
+## profiles テーブル
 
-* ...
+| Column             | Type        | Options                       |
+| ---------------    | ------------| ------------------------      |
+| description        | text        | null:false                    |
+| pastime            | string      | null: false                   |
+| gender_id          | string      | null: false                   |
+| birth_place_id     | string      | null: false                   |
+| resident_id        | string      | null: false                   |
+| birth_day          | date        | null: false                   |
+| user               | references  | null:false, foreign_key: true |
+
+### Association
+- has_many :tweets
+- has_many :tweetcomments
