@@ -1,3 +1,6 @@
+# Friend Connect
+ Friend Connectとは趣味が似ている人や話が合いそうな人と、トークしたりつながったりできるアプリです。
+
 # テーブル設計
 
 ## users テーブル
