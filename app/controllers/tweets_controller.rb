@@ -20,6 +20,20 @@ class TweetsController < ApplicationController
     set_tweet
   end
 
+  def edit
+    set_tweet
+    redirect_to root_path unless @tweet.user.id == current_user.id
+  end
+
+  def update
+    set_tweet
+    if @tweet.update(tweet_params)
+      redirect_to tweet_path(@tweet.id)
+    else
+      render :edit
+    end
+  end
+
   private 
   
   def tweet_params
