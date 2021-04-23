@@ -1,5 +1,6 @@
 class TweetsController < ApplicationController
   def index
+    @tweets = Tweet.order("created_at DESC")
   end
 
   def new
@@ -12,8 +13,9 @@ class TweetsController < ApplicationController
       redirect_to root_path
     else
       render :new
+    end
   end
-  
+
   private 
   
   def tweet_params
