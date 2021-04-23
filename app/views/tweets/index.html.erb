@@ -18,7 +18,7 @@
       <%= tweet.content %>
     </div>
     <div class="tweet-image">
-      <%= link_to image_tag tweet.image.variant(resize: '500x500'), tweet_path if tweet.image.attached? %>
+      <%= link_to image_tag(tweet.image.variant(resize: '500x500')), tweet_path(tweet.id) if tweet.image.attached? %>
     </div>
   </div>
 <% end %>

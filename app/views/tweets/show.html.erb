@@ -1,0 +1,17 @@
+<main class="main">
+  <div class="inner">
+    <div class="tweet__wrapper">
+      <p class="tweet__hedding">
+        <%= @tweet.content %>
+      </p>
+      <%= link_to "by #{@tweet.user.name}", user_path(@tweet.user), class: :tweet__user %>
+      <%# プロトタイプの投稿者とログインしているユーザーが同じであれば以下を表示する %>
+      <% if user_signed_in? && current_user.id == @tweet.user.id %>
+        <div class="tweet__manage">
+          <%= link_to "編集する", edit_tweet_path(@tweet.id), class: :tweet__btn %>
+          <%= link_to "削除する", tweet_path(@tweet.id), method: :delete, class: :tweet__btn %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</main>

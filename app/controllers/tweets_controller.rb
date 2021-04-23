@@ -16,9 +16,17 @@ class TweetsController < ApplicationController
     end
   end
 
+  def show
+    set_tweet
+  end
+
   private 
   
   def tweet_params
      params.require(:tweet).permit(:content, :pastime_id, :image).merge(user_id: current_user.id)
+  end
+
+  def set_tweet
+    @tweet = Tweet.find(params[:id])
   end
 end
