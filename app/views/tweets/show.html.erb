@@ -8,13 +8,35 @@
         </div>
       </p>
       <%= link_to "by #{@tweet.user.name}", user_path(@tweet.user), class: :tweet__user %>
-      <%# プロトタイプの投稿者とログインしているユーザーが同じであれば以下を表示する %>
+      
       <% if user_signed_in? && current_user.id == @tweet.user.id %>
         <div class="tweet__manage">
           <%= link_to "編集する", edit_tweet_path(@tweet.id), class: :tweet__btn %>
           <%= link_to "削除する", tweet_path(@tweet.id), method: :delete, class: :tweet__btn %>
         </div>
       <% end %>
+    </div>
+    <div class="tweet__comments">
+      <% if user_signed_in? %>
+        <%= form_with(model: [@tweet, @comment], local: true) do |f| %>
+          <div class="field">
+            <%= f.label :text, "メッセージを送る" %><br />
+            <%= f.text_field :text %>
+          </div>
+          <div class="actions">
+            <%= f.submit "送信する", class: :form__btn %>
+          </div>
+        <% end %> 
+      <% end %>
+      <ul class="comments_lists">
+        <% @comments.each do |comment| %>
+          <li class="comments_list">
+              <%= comment.text %>
+              <%= link_to "#{comment.user.name}", user_path(comment.user), class: :comment_user %>
+          </li>
+        <% end %>
+        <% @comment.text %>
+      </ul>
     </div>
   </div>
 </main>
