@@ -1,24 +1,20 @@
 <%= render "shared/header" %>
 <div class="main">
-<h3 class="page-heading">自分の趣味を投稿してみよう！</h3>
-        <%= link_to "投稿する", new_tweet_path, class:"post" %>
-    </div>
-  </div>
+  <h3 class="text-monospace">自分の趣味を投稿してみよう！</h3>
+  <i class="fas fa-paper-plane fa-lg"></i><%= link_to "投稿する", new_tweet_path, class:"btn btn-primary" %>
 
 <% @tweets.each do |tweet| %>
-  <div class="tweet">
-    <div class="tweet-user">
+  <div class="card">
+    <div class="text-info">
       <%= link_to tweet.user.name, user_path(tweet.user) %>
     </div>
-    <div class="tweet-pastime">
+    <h3 class="card-title">
       <%= tweet.pastime.name %>
-    </div>
-    <div class="tweet-content">
+    </h3>
+    <div class="card-title">
       <%= tweet.content %>
     </div>
-    <div class="tweet-image">
+    <img class="card-img-top">
       <%= link_to image_tag(tweet.image.variant(resize: '500x500')), tweet_path(tweet.id) if tweet.image.attached? %>
-    </div>
   </div>
 <% end %>
-</div>

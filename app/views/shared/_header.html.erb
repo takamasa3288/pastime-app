@@ -1,25 +1,26 @@
-<header style='padding-top:200px'>
+<header style='padding-top:100px'>
   <div class='container'>
     <div class='navbar navbar-expand navbar-dark bg-secondary fixed-top'>
-        <h1 class="navbar-brand">Friend Connect</h1>
+        <i class="far fa-handshake fa-lg"></i><h1 class="navbar-brand">Friend Connect</h1>
         <h3 class="navbar-brand">〜同じ趣味を見つけて繋がろう！〜</h3>
         <% if user_signed_in? %>
           <nav class="navbar-nav">
-            こんにちは、<%= link_to "#{current_user.name}さん", user_path(current_user), class: "text-link" %>
+            <i class="fas fa-smile fa-lg"></i>こんにちは、<%= "#{current_user.name}さん"%>
           </nav>
         <% else %>
-          <nav class="navbar-brand">
-          こんにちは、ゲストさん
+          <nav class="navbar-nav">
+          <i class="fas fa-smile fa-lg"></i>こんにちは、ゲストさん
         <% end %>
         </nav>
         <ul class='navbar-nav'>
           <% if user_signed_in? %>
-          <li><%= link_to "マイページ", user_path(current_user), class: "nav-link" %></li> 
-          <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "nav-link" %></li>
+            <i class="fas fa-home fa-lg"></i><li><%= link_to "マイページ", user_path(current_user), class: "nav-link" %></li> 
+            <i class="fas fa-sign-out-alt fa-lg"></i><li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "nav-link" %></li>
           <% else %>
-          <li><%= link_to 'ログイン', new_user_session_path, class: "nav-link" %></li>
-          <li><%= link_to '新規登録', new_user_registration_path , class: "nav-link" %></li>
+            <i class="fas fa-sign-in-alt fa-lg"></i><li><%= link_to 'ログイン', new_user_session_path, class: "nav-link" %></li>
+            <i class="fas fa-plus fa-lg"></i><li><%= link_to '新規登録', new_user_registration_path , class: "nav-link" %></li>
           <% end %>
+          <i class="fas fa-paper-plane fa-lg"></i><%= link_to "投稿する", new_tweet_path, class:"btn btn-primary" %>
         </ul>
   </div>
 </header>
