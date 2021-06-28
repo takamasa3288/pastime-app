@@ -1,9 +1,11 @@
+<%= render "shared/header" %>
 <div class="main">
   <div class="inner">
     <div class="user__wrapper">
       <h2 class="page-heading">
         <%= "#{@user.name}さんの情報"%>  プロフィールを編集する
       </h2>
+      <%= link_to "戻る", root_path, class:"btn btn-info" %>
       <table class="table">
         <tbody>
           <tr>
@@ -31,7 +33,7 @@
       <h2 class="page-heading">
         <%= "#{@user.name}さんの投稿" %>
       </h2>
-      <div class="user__card">
+      <div class="card">
         <%= render partial: "tweets/tweet", collection: @tweets %>
       </div>
     </div>

@@ -1,9 +1,10 @@
+<%= render "shared/header" %>
 <main class="main">
   <div class="inner">
     <div class="tweet__wrapper">
       <p class="tweet__hedding">
         <%=  image_tag @tweet.image.variant(resize: '500x500') if @tweet.image.attached? %>
-        <div class="tweet-image">
+        <div class="text-monospace">
           <%= @tweet.content %>
         </div>
       </p>
@@ -11,8 +12,8 @@
       
       <% if user_signed_in? && current_user.id == @tweet.user.id %>
         <div class="tweet__manage">
-          <%= link_to "編集する", edit_tweet_path(@tweet.id), class: :tweet__btn %>
-          <%= link_to "削除する", tweet_path(@tweet.id), method: :delete, class: :tweet__btn %>
+          <%= link_to "編集する", edit_tweet_path(@tweet.id), class: :"btn btn-primary"  %>
+          <%= link_to "削除する", tweet_path(@tweet.id), method: :delete, class: :"btn btn-primary"%>
         </div>
       <% end %>
     </div>
